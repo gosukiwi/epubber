@@ -1,7 +1,7 @@
 require 'epubber/generators/generator'
 
 module Epubber::Generators
-  class Chapters < Epubber::Generators::Generator
+  class Chapters < Generator
     def generate
       compiled_template = template.compile 'OEBPS/Text/chapter.xhtml'
       book.chapters.each do |chapter|

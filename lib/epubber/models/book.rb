@@ -23,6 +23,7 @@ module Epubber::Models
     end
 
     def introduction(&block)
+      return @introduction unless block_given?
       @introduction = Introduction.new
       @introduction.instance_eval &block
     end

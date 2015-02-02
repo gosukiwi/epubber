@@ -1,7 +1,7 @@
 require 'epubber/generators/generator'
 
 module Epubber::Generators
-  class Static < Epubber::Generators::Generator
+  class Static < Generator
     def generate
       files = ['mimetype', 'META-INF/container.xml', 'META-INF/com.apple.ibooks.display-options.xml',
                'OEBPS/Text/acknowledgements.xhtml', 'OEBPS/Text/cover.xhtml', 'OEBPS/Text/dedication.xhtml', 'OEBPS/Text/endnotes.xhtml',

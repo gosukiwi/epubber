@@ -1,7 +1,7 @@
 require 'epubber/generators/generator'
 
 module Epubber::Generators
-  class Toc < Epubber::Generators::Generator
+  class Toc < Generator
     def generate
       content = template.parse file: 'OEBPS/toc.ncx', context: book_context
       persist file: 'OEBPS/toc.ncx', content: content
