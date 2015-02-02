@@ -7,6 +7,10 @@ class EpubberTest < Minitest::Test
       title 'My First EPUB book'
       author 'Ramirez, Federico'
 
+      introduction do
+        content "<p>This is the introduction, and it's optional. What is this book about?</p>"
+      end
+
       chapter do
         title 'Chapter 1'
         content '<p>This is some content!</p>'

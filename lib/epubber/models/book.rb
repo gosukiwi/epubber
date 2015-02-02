@@ -1,10 +1,11 @@
 require 'securerandom'
 require 'epubber/models/chapter'
+require 'epubber/models/introduction'
 
 # Represents a book with it's chapters.
 module Epubber::Models
   class Book
-    #attr_reader :title, :author, :description, :chapters
+    attr_reader :chapters, :introduction
     def initialize
       @title        = not_specified
       @author       = not_specified
@@ -16,19 +17,22 @@ module Epubber::Models
       @subjects     = 'NON000000 NON-CLASSIFIABLE'
       @isbn         = nil
 
+      # Related models
       @chapters = []
+      @introduction = nil
     end
 
-    def chapters
-      @chapters
+    def introduction(&block)
+      @introduction = Introduction.new
+      @introduction.instance_eval &block
     end
 
     # Add new chapter to the book
-    def chapter(title: title, content: content, &block)
+    def chapter(&block)
       chapter = Chapter.new
       chapter.instance_eval &block
-      chapter.id(@chapters.count + 1)
-      @chapters << chapter
+      chapter.id(chapters.count + 1)
+      chapters << chapter
     end
 
     def title(text = nil)
@@ -66,16 +70,19 @@ module Epubber::Models
 
     def contextify
       { 
+        # Attributes
         "title" => @title, 
         "author" => @author,
         "description" => @description, 
         "publisher" => @publisher,
         "language" => @language,
-        "chapters" => contextified_chapters,
         "url" => @url,
         "subjects" => @subjects,
         "uuid" => ::SecureRandom.uuid,
-        "isbn" => @isbn
+        "isbn" => @isbn,
+        # Related models
+        "chapters" => contextified_chapters,
+        "introduction" => @introduction.contextify
       }
     end
 
@@ -86,7 +93,7 @@ module Epubber::Models
     end
 
     def contextified_chapters
-      @chapters.map do |chapter|
+      chapters.map do |chapter|
         chapter.contextify
       end
     end

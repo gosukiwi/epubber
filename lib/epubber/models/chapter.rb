@@ -3,8 +3,8 @@ module Epubber::Models
   class Chapter
     def initialize
       @id = 0
-      @title = 'No Title'
-      @content = '<p>No content</p>'
+      @title = 'Not specified'
+      @content = '<p>Not specified</p>'
     end
 
     def id(idx)

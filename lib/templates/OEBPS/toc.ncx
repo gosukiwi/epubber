@@ -13,6 +13,42 @@
     <text>{{ book.title }}</text>
   </docTitle>
   <navMap>
+    <!--
+    <navPoint id="navpoint-cover">
+      <navLabel>
+        <text>Cover</text>
+      </navLabel>
+      <content src="Text/cover.xhtml" />
+    </navPoint>
+    <navPoint id="navpoint-frontmatter">
+      <navLabel>
+        <text>Front Matter</text>
+      </navLabel>
+      <content src="Text/frontmatter.xhtml" />
+    </navPoint>
+    <navPoint id="navpoint-dedication">
+      <navLabel>
+        <text>Dedication</text>
+      </navLabel>
+      <content src="Text/dedication.xhtml" />
+    </navPoint>
+    <navPoint id="navpoint-foreword">
+      <navLabel>
+        <text>Foreword</text>
+      </navLabel>
+      <content src="Text/foreword.xhtml" />
+    </navPoint>
+    -->
+
+    {% if book.introduction %}
+      <navPoint id="navpoint-introduction">
+        <navLabel>
+          <text>Introduction</text>
+        </navLabel>
+        <content src="Text/introduction.xhtml" />
+      </navPoint>
+    {% endif %}
+
     {% for chapter in book.chapters %}
       <navPoint id="navpoint{{ chapter.id }}" playOrder="{{ chapter.id }}">
         <navLabel>
@@ -21,5 +57,20 @@
         <content src="Text/chapter{{ chapter.id }}.xhtml"/>
       </navPoint>
     {% endfor %}
+
+    <!--
+    <navPoint id="navpoint-endnotes">
+      <navLabel>
+        <text>Endnotes</text>
+      </navLabel>
+      <content src="Text/endnotes.xhtml" />
+    </navPoint>
+    <navPoint id="navpoint-acknowledgements">
+      <navLabel>
+        <text>Acknowledgements</text>
+      </navLabel>
+      <content src="Text/acknowledgements.xhtml" />
+    </navPoint>
+    -->
   </navMap>
 </ncx>

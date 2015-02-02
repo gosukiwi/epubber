@@ -70,17 +70,23 @@
     <item href="Text/cover.xhtml" id="cover" media-type="application/xhtml+xml" />
     <item href="toc.ncx" id="ncx" media-type="application/x-dtbncx+xml" />
     <item href="Styles/style.css" id="css" media-type="text/css" />
+    <!--
     <item href="Text/frontmatter.xhtml" id="frontmatter" media-type="application/xhtml+xml" />
     <item href="Text/dedication.xhtml" id="dedication" media-type="application/xhtml+xml" />
+    -->
     <item href="Text/toc.xhtml" id="toc" media-type="application/xhtml+xml" />
+    <!--
     <item href="Text/foreword.xhtml" id="foreword" media-type="application/xhtml+xml" />
-    <item href="Text/introduction.xhtml" id="introduction" media-type="application/xhtml+xml" />
+    -->
+    {% if book.introduction %}
+      <item href="Text/introduction.xhtml" id="introduction" media-type="application/xhtml+xml" />
+    {% endif %}
     {% for chapter in book.chapters %}
       <item href="Text/chapter{{ chapter.id }}.xhtml" id="chapter-{{ chapter.id }}" media-type="application/xhtml+xml" />
     {% endfor %}
+    <!--
     <item href="Text/endnotes.xhtml" id="endnotes" media-type="application/xhtml+xml" />
     <item href="Text/acknowledgements.xhtml" id="acknowledgements" media-type="application/xhtml+xml" />
-    <!--
     <item href="Images/image-01.jpg" id="image-01" media-type="image/jpeg" />
     <item href="Images/image-02.png" id="image-02" media-type="image/png" />
     -->
@@ -105,17 +111,25 @@
 
        -->
   <spine toc="ncx">
+    <!--
     <itemref idref="cover" />
     <itemref idref="frontmatter" />
+    -->
     <itemref idref="toc" />
+    <!--
     <itemref idref="foreword" />
     <itemref idref="dedication" />
-    <itemref idref="introduction" />
+    -->
+    {% if book.introduction %}
+      <itemref idref="introduction" />
+    {% endif %}
     {% for chapter in book.chapters %}
       <itemref idref="chapter-{{ chapter.id }}" />
     {% endfor %}
+    <!--
     <itemref idref="endnotes" />
     <itemref idref="acknowledgements" />
+    -->
   </spine>
 
   <!-- GUIDE (optional, recommended by Apple)
@@ -130,17 +144,25 @@
 
        -->
   <guide>
+    <!--
     <reference href="Text/cover.xhtml" title="Cover" type="cover" />
+    -->
     <reference href="Text/toc.xhtml" title="Table of Contents" type="toc" />
+    <!--
     <reference href="Text/frontmatter.xhtml" type="copyright-page" />
     <reference href="Text/foreword.xhtml" type="foreword" />
     <reference href="Text/dedication.xhtml" type="dedication" />
-    <reference href="Text/introduction.xhtml" type="text" />
+    -->
+    {% if book.introduction %}
+      <reference href="Text/introduction.xhtml" type="text" />
+    {% endif %}
     {% for chapter in book.chapters %}
       <reference href="Text/chapter{{ chapter.id }}.xhtml" type="text" />
     {% endfor %}
+    <!--
     <reference href="Text/endnotes.xhtml" type="notes" />
     <reference href="Text/acknowledgements.xhtml" type="acknowledgements" />
+    -->
   </guide>
 
 </package>

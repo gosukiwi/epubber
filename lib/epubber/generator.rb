@@ -1,6 +1,7 @@
 require 'epubber/generators/chapters'
 require 'epubber/generators/content'
 require 'epubber/generators/toc'
+require 'epubber/generators/introduction'
 require 'epubber/generators/static'
 require 'epubber/services/persistance'
 require 'epubber/services/compressor'
@@ -16,9 +17,10 @@ class Epubber::Generator
     @generators  = []
 
     params = { book: book, persistance: @persistance }
-    add_generator Epubber::Generators::Chapters.new(params)
     add_generator Epubber::Generators::Content.new(params)
+    add_generator Epubber::Generators::Introduction.new(params)
     add_generator Epubber::Generators::Toc.new(params)
+    add_generator Epubber::Generators::Chapters.new(params)
     add_generator Epubber::Generators::Static.new(params)
   end
 
