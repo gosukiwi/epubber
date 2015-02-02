@@ -42,8 +42,10 @@ protected
   end
 
   def pack
-    compress working_dir, File.join(working_dir, "/../#{filename}")
+    path = File.join working_dir, "/../#{filename}"
+    compress working_dir, path
     clean_working_dir
+    path
   end
 
   def add_generator(generator)
