@@ -3,7 +3,7 @@ require 'epubber'
 
 class EpubberTest < Minitest::Test
   def test_dsl
-    result = Epubber::generate do
+    result = Epubber.generate do
       title 'My First EPUB book'
       author 'Ramirez, Federico'
 
