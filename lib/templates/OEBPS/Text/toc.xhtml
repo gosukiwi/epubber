@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Contents</title>
+    <link href="../Styles/style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="toc" xml:lang="en-US">
+      <h1>Contents</h1>
+      <ul>
+        <li><a href="../Text/cover.xhtml"><span>Cover</span></a></li>
+        <li><a href="../Text/frontmatter.xhtml"><span>Front Matter</span></a></li>
+        <li><a href="../Text/dedication.xhtml"><span>Dedication</span></a></li>
+        <li><a href="../Text/foreword.xhtml"><span>Foreword</span></a></li>
+        <li><a href="../Text/introduction.xhtml"><span>Introduction</span></a></li>
+        {% for chapter in book.chapters %}
+          <li><a href="../Text/chapter{{ chapter.id }}.xhtml"><span>{{ chapter.title }}</span></a></li>
+        {% endfor %}
+        <li><a href="../Text/endnotes.xhtml"><span>Endnotes</span></a></li>
+        <li><a href="../Text/acknowledgements.xhtml"><span>Acknowledgements</span></a></li>
+      </ul>
+    </div>
+  </body>
+</html>
