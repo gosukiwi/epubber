@@ -20,6 +20,10 @@ class EpubberTest < Minitest::Test
         title 'Chapter 2'
         content '<p>Some more content this is.</p>'
       end
+
+      endnotes do
+        content '<p>This was a fun book. Thanks for reading!</p>'
+      end
     end
 
     puts result

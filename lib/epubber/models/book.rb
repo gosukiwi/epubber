@@ -1,6 +1,7 @@
 require 'securerandom'
 require 'epubber/models/concerns/has_chapters'
 require 'epubber/models/concerns/has_introduction'
+require 'epubber/models/concerns/has_endnotes'
 
 # Represents a book with it's chapters.
 module Epubber::Models
@@ -8,6 +9,7 @@ module Epubber::Models
     # Related models and their DSL goodies
     include Epubber::Models::Concerns::HasChapters
     include Epubber::Models::Concerns::HasIntroduction
+    include Epubber::Models::Concerns::HasEndnotes
 
     def initialize
       @title        = not_specified
@@ -72,6 +74,7 @@ module Epubber::Models
       # Related models
       context["chapters"]     = contextified_chapters
       context["introduction"] = contextified_introduction
+      context["endnotes"]     = contextified_endnotes
       return context
     end
 

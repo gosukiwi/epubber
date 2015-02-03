@@ -58,13 +58,16 @@
       </navPoint>
     {% endfor %}
 
+    {% if book.endnotes %}
+      <navPoint id="navpoint-endnotes">
+        <navLabel>
+          <text>Endnotes</text>
+        </navLabel>
+        <content src="Text/endnotes.xhtml" />
+      </navPoint>
+    {% endif %}
+
     <!--
-    <navPoint id="navpoint-endnotes">
-      <navLabel>
-        <text>Endnotes</text>
-      </navLabel>
-      <content src="Text/endnotes.xhtml" />
-    </navPoint>
     <navPoint id="navpoint-acknowledgements">
       <navLabel>
         <text>Acknowledgements</text>

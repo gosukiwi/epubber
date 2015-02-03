@@ -81,11 +81,15 @@
     {% if book.introduction %}
       <item href="Text/introduction.xhtml" id="introduction" media-type="application/xhtml+xml" />
     {% endif %}
+
     {% for chapter in book.chapters %}
       <item href="Text/chapter{{ chapter.id }}.xhtml" id="chapter-{{ chapter.id }}" media-type="application/xhtml+xml" />
     {% endfor %}
+
+    {% if book.endnotes %}
+      <item href="Text/endnotes.xhtml" id="endnotes" media-type="application/xhtml+xml" />
+    {% endif %}
     <!--
-    <item href="Text/endnotes.xhtml" id="endnotes" media-type="application/xhtml+xml" />
     <item href="Text/acknowledgements.xhtml" id="acknowledgements" media-type="application/xhtml+xml" />
     <item href="Images/image-01.jpg" id="image-01" media-type="image/jpeg" />
     <item href="Images/image-02.png" id="image-02" media-type="image/png" />
@@ -123,11 +127,15 @@
     {% if book.introduction %}
       <itemref idref="introduction" />
     {% endif %}
+
     {% for chapter in book.chapters %}
       <itemref idref="chapter-{{ chapter.id }}" />
     {% endfor %}
+
+    {% if book.endnotes %}
+      <itemref idref="endnotes" />
+    {% endif %}
     <!--
-    <itemref idref="endnotes" />
     <itemref idref="acknowledgements" />
     -->
   </spine>
@@ -156,11 +164,15 @@
     {% if book.introduction %}
       <reference href="Text/introduction.xhtml" type="text" />
     {% endif %}
+
     {% for chapter in book.chapters %}
       <reference href="Text/chapter{{ chapter.id }}.xhtml" type="text" />
     {% endfor %}
+
+    {% if book.endnotes %}
+      <reference href="Text/endnotes.xhtml" type="notes" />
+    {% endif %}
     <!--
-    <reference href="Text/endnotes.xhtml" type="notes" />
     <reference href="Text/acknowledgements.xhtml" type="acknowledgements" />
     -->
   </guide>
