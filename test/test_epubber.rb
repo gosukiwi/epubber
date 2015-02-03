@@ -26,6 +26,6 @@ class EpubberTest < Minitest::Test
       end
     end
 
-    puts result
+    assert_equal '/tmp/epubber/My First EPUB book.epub', result
   end
 end
