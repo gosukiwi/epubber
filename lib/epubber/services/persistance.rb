@@ -1,8 +1,8 @@
 module Epubber::Services
   class Persistance
-    attr_reader :working_dir
-    def initialize(working_dir)
-      @working_dir = working_dir
+    attr_reader :workspace
+    def initialize(workspace)
+      @workspace = workspace
     end
 
     # Persist a file into the working directory with the spcified contents.
@@ -14,7 +14,7 @@ module Epubber::Services
 
     # Remove the working directory, thus cleaning the file system
     def clean
-      FileUtils.remove_dir working_dir, true
+      FileUtils.remove_dir workspace, true
     end
 
   protected
@@ -29,7 +29,7 @@ module Epubber::Services
     end
 
     def path(file)
-      File.join working_dir, file
+      File.join workspace, file
     end
   end
 end

@@ -12,11 +12,14 @@ class Epubber::Generator
   def initialize(book: book, filename: filename, working_dir: working_dir)
     @book        = book
     @filename    = filename || "#{book.title}.epub"
-    @working_dir = working_dir || 'C:/tmp/epubber'
-    @persistance = Epubber::Services::Persistance.new @working_dir
+    @working_dir = working_dir || '/tmp/epubber'
+    @persistance = Epubber::Services::Persistance.new File.join(@working_dir, 'workspace')
     @generators  = []
 
-    params = { book: book, persistance: @persistance }
+    register_generators book: book, persistance: @persistance
+  end
+
+  def register_generators(params)
     add_generator Epubber::Generators::Content.new(params)
     add_generator Epubber::Generators::Introduction.new(params)
     add_generator Epubber::Generators::Toc.new(params)
@@ -44,10 +47,11 @@ protected
   end
 
   def pack
-    path = File.join working_dir, "/../#{filename}"
-    compress working_dir, path
+    zipfile_path   = File.join working_dir, "#{filename}"
+    workspace_path = File.join working_dir, 'workspace'
+    compress workspace_path, zipfile_path
     clean_working_dir
-    path
+    zipfile_path
   end
 
   def add_generator(generator)
