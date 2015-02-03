@@ -34,7 +34,7 @@ class Epubber::Generator
 
 protected
 
-  def clean_working_dir
+  def clean_tmp
     @persistance.clean
   end
 
@@ -42,16 +42,17 @@ protected
     Epubber::Services::Compressor.new
   end
 
-  def compress(dir, file)
+  def compress
+    file = File.join working_dir, "#{filename}"
+    dir  = File.join working_dir, 'workspace'
     compressor.compress dir, file
+    return file
   end
 
   def pack
-    zipfile_path   = File.join working_dir, "#{filename}"
-    workspace_path = File.join working_dir, 'workspace'
-    compress workspace_path, zipfile_path
-    clean_working_dir
-    zipfile_path
+    path = compress
+    clean_tmp
+    return path
   end
 
   def add_generator(generator)
