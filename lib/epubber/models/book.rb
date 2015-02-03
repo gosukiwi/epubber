@@ -1,11 +1,14 @@
 require 'securerandom'
-require 'epubber/models/chapter'
-require 'epubber/models/introduction'
+require 'epubber/models/concerns/has_chapters'
+require 'epubber/models/concerns/has_introduction'
 
 # Represents a book with it's chapters.
 module Epubber::Models
   class Book
-    attr_reader :chapters, :introduction
+    # Related models and their DSL goodies
+    include Epubber::Models::Concerns::HasChapters
+    include Epubber::Models::Concerns::HasIntroduction
+
     def initialize
       @title        = not_specified
       @author       = not_specified
@@ -16,24 +19,6 @@ module Epubber::Models
       # LIST / OF / SUBJECTS => https://www.bisg.org/complete-bisac-subject-headings-2014-edition
       @subjects     = 'NON000000 NON-CLASSIFIABLE'
       @isbn         = nil
-
-      # Related models
-      @chapters = []
-      @introduction = nil
-    end
-
-    def introduction(&block)
-      return @introduction unless block_given?
-      @introduction = Introduction.new
-      @introduction.instance_eval &block
-    end
-
-    # Add new chapter to the book
-    def chapter(&block)
-      chapter = Chapter.new
-      chapter.instance_eval &block
-      chapter.id(chapters.count + 1)
-      chapters << chapter
     end
 
     def title(text = nil)
@@ -69,8 +54,9 @@ module Epubber::Models
       @isbn = isbn
     end
 
+    # Return a hash which can be used as a template's context
     def contextify
-      { 
+      context = { 
         # Attributes
         "title" => @title, 
         "author" => @author,
@@ -80,23 +66,19 @@ module Epubber::Models
         "url" => @url,
         "subjects" => @subjects,
         "uuid" => ::SecureRandom.uuid,
-        "isbn" => @isbn,
-        # Related models
-        "chapters" => contextified_chapters,
-        "introduction" => @introduction.contextify
+        "isbn" => @isbn
       }
+      
+      # Related models
+      context["chapters"]     = contextified_chapters
+      context["introduction"] = contextified_introduction
+      return context
     end
 
   protected
 
     def not_specified
       'Not specified'
-    end
-
-    def contextified_chapters
-      chapters.map do |chapter|
-        chapter.contextify
-      end
     end
   end
 end
