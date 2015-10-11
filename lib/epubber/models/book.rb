@@ -14,7 +14,6 @@ module Epubber::Models
     def initialize
       @title        = not_specified
       @author       = not_specified
-      @description  = not_specified
       @publisher    = not_specified
       @language     = 'en'
       @url          = not_specified
@@ -34,10 +33,6 @@ module Epubber::Models
 
     def publisher(text)
       @publisher = text
-    end
-
-    def description(text)
-      @description = text
     end
 
     def language(lang)
@@ -62,7 +57,6 @@ module Epubber::Models
         # Attributes
         "title" => @title, 
         "author" => @author,
-        "description" => @description, 
         "publisher" => @publisher,
         "language" => @language,
         "url" => @url,

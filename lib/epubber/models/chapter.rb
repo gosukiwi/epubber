@@ -1,6 +1,10 @@
+require 'epubber/models/concerns/has_endnotes'
+
 # Represents a book's chapter
 module Epubber::Models
   class Chapter
+    include Epubber::Models::Concerns::HasHTML
+
     def initialize
       @id = 0
       @title = 'Not specified'
@@ -16,7 +20,7 @@ module Epubber::Models
     end
 
     def content(text)
-      @content = text
+      @content = clean_html(text)
     end
 
     def contextify

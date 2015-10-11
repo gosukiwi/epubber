@@ -24,4 +24,5 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency "liquid", "~> 3.0"
   spec.add_runtime_dependency "rubyzip", ">= 1.0.0"
+  spec.add_runtime_dependency "nokogiri", "~> 1.6"
 end
