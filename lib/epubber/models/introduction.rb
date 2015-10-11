@@ -1,4 +1,4 @@
-require 'epubber/models/concerns/has_endnotes'
+require 'epubber/models/concerns/has_html'
 
 # Represents a book's introduction
 module Epubber::Models

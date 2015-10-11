@@ -1,4 +1,4 @@
-require 'epubber/models/concerns/has_endnotes'
+require 'epubber/models/concerns/has_html'
 
 # Represents a book's chapter
 module Epubber::Models
@@ -20,7 +20,7 @@ module Epubber::Models
     end
 
     def content(text)
-      @content = clean_html(text)
+      @content = clean_html(text()
     end
 
     def contextify
