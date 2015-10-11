@@ -1,11 +1,12 @@
 require 'securerandom'
+require 'epubber/models/model'
 require 'epubber/models/concerns/has_chapters'
 require 'epubber/models/concerns/has_introduction'
 require 'epubber/models/concerns/has_endnotes'
 
 # Represents a book with it's chapters.
 module Epubber::Models
-  class Book
+  class Book < Model
     # Related models and their DSL goodies
     include Epubber::Models::Concerns::HasChapters
     include Epubber::Models::Concerns::HasIntroduction
