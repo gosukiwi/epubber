@@ -3,7 +3,7 @@ require 'liquid'
 module Epubber::Services
   class Template
     # Compiles and renderes a template file in the given context
-    def parse(file: file, context: context)
+    def parse(file:, context:)
       compile(file).render context
     end
 

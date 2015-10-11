@@ -3,7 +3,7 @@ require 'epubber/services/template'
 module Epubber::Generators
   class Generator
     attr_reader :book, :persistance
-    def initialize(book: book, persistance: persistance)
+    def initialize(book:, persistance:)
       @book = book
       @persistance = persistance
     end
@@ -22,7 +22,7 @@ module Epubber::Generators
       template.path file
     end
 
-    def persist(file: file, content: content)
+    def persist(file:, content:)
       persistance.persist file: file, content: content
     end
   end
