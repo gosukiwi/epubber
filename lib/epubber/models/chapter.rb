@@ -20,7 +20,7 @@ module Epubber::Models
     end
 
     def content(text)
-      @content = clean_html(text()
+      @content = clean_html(text)
     end
 
     def contextify
