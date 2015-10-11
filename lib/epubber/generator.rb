@@ -10,7 +10,7 @@ require 'epubber/services/compressor'
 # Given a book and a place to work in, generates all required EPUB files
 class Epubber::Generator
   attr_reader :working_dir, :book, :filename
-  def initialize(book: book, filename: filename, working_dir: working_dir)
+  def initialize(book:, filename:, working_dir:)
     @book        = book
     @filename    = filename || "#{book.title}.epub"
     @working_dir = working_dir || '/tmp/epubber'
