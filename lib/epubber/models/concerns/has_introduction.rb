@@ -6,7 +6,7 @@ module Epubber::Models::Concerns
       @introduction ||= nil
       return @introduction unless block_given?
       @introduction = Epubber::Models::Introduction.new
-      @introduction.instance_eval &block
+      yield @introduction
     end
 
     def contextified_introduction

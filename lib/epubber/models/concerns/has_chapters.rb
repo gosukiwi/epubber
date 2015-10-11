@@ -7,9 +7,10 @@ module Epubber::Models::Concerns
     end
 
     # Add chapter
-    def chapter(&block)
+    def chapter
+      raise 'No block given' unless block_given?
       chapter = Epubber::Models::Chapter.new
-      chapter.instance_eval &block
+      yield chapter
       chapter.id(chapters.count + 1)
       chapters << chapter
     end

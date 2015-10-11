@@ -20,20 +20,24 @@ Or install it yourself as:
 Epubber's DSL is rather simple:
 
 ```ruby
-path = Epubber.generate do
-  title 'My First EPUB book'
-  author 'Ramirez, Federico'
-  description 'This is an example EPUB'
-  url 'http://my-url.com'
+path = Epubber.generate do |b|
+  b.title 'My First EPUB book'
+  b.author 'Ramirez, Federico'
+  b.description 'This is an example EPUB'
+  b.url 'http://my-url.com'
 
-  chapter do
-    title 'Chapter 1'
-    content '<p>This is some content!</p>'
+  b.introduction do |i|
+    i.content '<p>This is an introduction.</p>'
   end
 
-  chapter do
-    title 'Chapter 2'
-    content '<p>Some more content this is.</p>'
+  b.chapter do |c|
+    c.title 'Chapter 1'
+    c.content '<p>This is some content!</p>'
+  end
+
+  b.chapter do |c|
+    c.title 'Chapter 2'
+    c.content '<p>Some more content this is.</p>'
   end
 end
 
@@ -44,7 +48,7 @@ end
 You can configure the generator 
 
 ```ruby
-path = Epubber.generate filename: 'some-file.epub', workspace: '/tmp' do
+path = Epubber.generate filename: 'some-file.epub', workspace: '/tmp' do |b|
   # Ebook code here...
 end
 ``` 

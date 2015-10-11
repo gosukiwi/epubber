@@ -7,7 +7,7 @@ module Epubber::Services
 
     # Persist a file into the working directory with the spcified contents.
     # The file argument is the relative path to the new file, eg: test/chapters/file.xhtml
-    def persist(file: file, content: content)
+    def persist(file:, content:)
       create_path_for file
       write file, content
     end

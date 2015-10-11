@@ -2,11 +2,11 @@ require 'epubber/models/endnotes'
 
 module Epubber::Models::Concerns
   module HasEndnotes
-    def endnotes(&block)
+    def endnotes
       @endnotes ||= nil
       return @endnotes unless block_given?
       @endnotes = Epubber::Models::Endnotes.new
-      @endnotes.instance_eval &block
+      yield @endnotes
     end
 
     def contextified_endnotes
