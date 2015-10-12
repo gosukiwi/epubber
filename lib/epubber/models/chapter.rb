@@ -1,8 +1,10 @@
-require 'epubber/models/model'
+require 'epubber/models/concerns/has_html'
 
 # Represents a book's chapter
 module Epubber::Models
-  class Chapter < Model
+  class Chapter
+    include Epubber::Models::Concerns::HasHTML
+
     def initialize
       @id = 0
       @title = 'Not specified'

@@ -1,8 +1,10 @@
-require 'epubber/models/model'
+require 'epubber/models/concerns/has_html'
 
 # Represents a book's introduction
 module Epubber::Models
-  class Introduction < Model
+  class Introduction
+    include Epubber::Models::Concerns::HasHTML
+
     def initialize
       @content = '<p>Not specified</p>'
     end
