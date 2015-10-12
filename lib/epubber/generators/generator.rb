@@ -11,7 +11,7 @@ module Epubber::Generators
   protected
 
     def book_context
-      { 'book' => book.contextify }
+      @book_context ||= { 'book' => book.contextify }
     end
 
     def template

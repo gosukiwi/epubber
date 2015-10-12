@@ -4,7 +4,7 @@ module Epubber::Generators
   class Static < Generator
     def generate
       files = ['mimetype', 'META-INF/container.xml', 'META-INF/com.apple.ibooks.display-options.xml',
-               'OEBPS/Text/cover.xhtml', 'OEBPS/Styles/style.css']
+               'OEBPS/Styles/style.css']
       files.each do |file|
         copy file
       end

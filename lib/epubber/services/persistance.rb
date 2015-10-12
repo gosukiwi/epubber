@@ -20,7 +20,11 @@ module Epubber::Services
   protected
 
     def write(file, content)
-      File.write path(file), content
+      if content.is_a?(File)
+        FileUtils.cp content.path, File.dirname(path(file))
+      else
+        File.write path(file), content
+      end
     end
 
     def create_path_for(file)

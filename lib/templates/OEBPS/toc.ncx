@@ -13,13 +13,16 @@
     <text>{{ book.title }}</text>
   </docTitle>
   <navMap>
+    {% if book.cover %}
+      <navPoint id="navpoint-cover">
+        <navLabel>
+          <text>Cover</text>
+        </navLabel>
+        <content src="Text/cover.xhtml" />
+      </navPoint>
+    {% endif %}
+
     <!--
-    <navPoint id="navpoint-cover">
-      <navLabel>
-        <text>Cover</text>
-      </navLabel>
-      <content src="Text/cover.xhtml" />
-    </navPoint>
     <navPoint id="navpoint-frontmatter">
       <navLabel>
         <text>Front Matter</text>

@@ -49,7 +49,7 @@
     <!-- Language code: http://en.wikipedia.org/wiki/List_of_ISO_639-2_codes -->
     <dc:language>{{ book.language }}</dc:language>
 
-    <meta name="cover" content="[COVER_NAME].jpg" />
+    <meta name="cover" content="{{ book.cover.filename }}" />
 
     <!-- UUID generator: http://www.famkruithof.net/uuid/uuidgen -->
     <dc:identifier opf:scheme="UUID">urn:uuid:{{ book.uuid }}</dc:identifier>
@@ -64,10 +64,10 @@
   -->
 
   <manifest>
-    <!--
-    <item href="Images/cover.jpg" id="cover.jpg" media-type="image/jpeg" />
-    -->
-    <item href="Text/cover.xhtml" id="cover" media-type="application/xhtml+xml" />
+    {% if book.cover %}
+      <item href="Images/{{ book.cover.filename }}" id="{{ book.cover.filename }}" media-type="{{ book.cover.file_mime }}" />
+      <item href="Text/cover.xhtml" id="cover" media-type="application/xhtml+xml" />
+    {% endif %}
     <item href="toc.ncx" id="ncx" media-type="application/x-dtbncx+xml" />
     <item href="Styles/style.css" id="css" media-type="text/css" />
     <!--
@@ -115,8 +115,10 @@
 
        -->
   <spine toc="ncx">
+    {% if book.cover %}
+      <itemref idref="cover" />
+    {% endif %}
     <!--
-    <itemref idref="cover" />
     <itemref idref="frontmatter" />
     -->
     <itemref idref="toc" />
@@ -152,9 +154,9 @@
 
        -->
   <guide>
-    <!--
-    <reference href="Text/cover.xhtml" title="Cover" type="cover" />
-    -->
+    {% if book.cover %}
+      <reference href="Text/cover.xhtml" title="Cover" type="cover" />
+    {% endif %}
     <reference href="Text/toc.xhtml" title="Table of Contents" type="toc" />
     <!--
     <reference href="Text/frontmatter.xhtml" type="copyright-page" />

@@ -1,4 +1,5 @@
 require 'minitest/autorun'
+require 'pry-byebug'
 require 'epubber'
 
 class EpubberTest < Minitest::Test
@@ -6,6 +7,10 @@ class EpubberTest < Minitest::Test
     result = Epubber.generate do |b|
       b.title 'My First EPUB book'
       b.author 'Ramirez, Federico'
+
+      b.cover do |c|
+        c.file File.new("#{File.dirname(__FILE__)}/assets/test-cover.png")
+      end
 
       b.introduction do |i|
         i.content "<p>This is the introduction, and it's optional. What is this book about?</p>"

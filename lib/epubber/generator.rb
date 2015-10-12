@@ -4,6 +4,7 @@ require 'epubber/generators/toc'
 require 'epubber/generators/introduction'
 require 'epubber/generators/static'
 require 'epubber/generators/endnotes'
+require 'epubber/generators/cover'
 require 'epubber/services/persistance'
 require 'epubber/services/compressor'
 
@@ -22,11 +23,12 @@ class Epubber::Generator
 
   def register_generators(params)
     add_generator Epubber::Generators::Content.new(params)
+    add_generator Epubber::Generators::Cover.new(params)
     add_generator Epubber::Generators::Introduction.new(params)
     add_generator Epubber::Generators::Toc.new(params)
     add_generator Epubber::Generators::Chapters.new(params)
-    add_generator Epubber::Generators::Static.new(params)
     add_generator Epubber::Generators::Endnotes.new(params)
+    add_generator Epubber::Generators::Static.new(params)
   end
 
   def generate
