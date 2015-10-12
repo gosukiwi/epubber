@@ -26,6 +26,10 @@ path = Epubber.generate do |b|
   b.description 'This is an example EPUB'
   b.url 'http://my-url.com'
 
+  b.cover do |c|
+    c.file File.new('my-image.jpg')
+  end
+
   b.introduction do |i|
     i.content '<p>This is an introduction.</p>'
   end
