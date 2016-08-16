@@ -1,4 +1,7 @@
 # Epubber
+
+[![Gem Version](https://badge.fury.io/rb/epubber.svg)](https://badge.fury.io/rb/epubber)
+
 This gem allows you to easily build EPUB files programatically.
 
 ## Installation
